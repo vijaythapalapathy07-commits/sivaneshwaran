@@ -1,0 +1,122 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with credits and subscription plan.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Unique user ID matching auth.uid"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "Profile avatar image URL"
+        },
+        "credits": {
+          "type": "integer",
+          "description": "Remaining AI generation credits"
+        },
+        "plan": {
+          "type": "string",
+          "description": "Subscription tier e.g. Pro Plan or Free Plan"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp; clients must submit FieldValue.serverTimestamp()"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Update timestamp; clients must submit FieldValue.serverTimestamp()"
+        }
+      },
+      "required": ["userId", "email", "credits", "plan", "createdAt", "updatedAt"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "AI Logo and Brand project authored by user or shared to community.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Brand or Project title"
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Logo generation prompt description"
+        },
+        "engine": {
+          "type": "string",
+          "description": "Generation engine e.g. text_to_logo, sketch_ref, vector_trace, brand_kit"
+        },
+        "industry": {
+          "type": "string",
+          "description": "Target industry category"
+        },
+        "style": {
+          "type": "string",
+          "description": "Logo visual style"
+        },
+        "badge": {
+          "type": "string",
+          "description": "Display badge e.g. VECTOR READY, BRAND KIT, AI Gen v3"
+        },
+        "variantsCount": {
+          "type": "integer",
+          "description": "Number of generated logo variants"
+        },
+        "primaryColor": {
+          "type": "string",
+          "description": "Primary hex color code"
+        },
+        "accentColor": {
+          "type": "string",
+          "description": "Accent hex color code"
+        },
+        "isPublic": {
+          "type": "boolean",
+          "description": "Whether project is visible in community feed"
+        },
+        "likesCount": {
+          "type": "integer",
+          "description": "Total community likes count"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp; clients must submit FieldValue.serverTimestamp()"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Update timestamp; clients must submit FieldValue.serverTimestamp()"
+        }
+      },
+      "required": ["userId", "title", "prompt", "engine", "industry", "style", "badge", "variantsCount", "primaryColor", "accentColor", "isPublic", "likesCount", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Per-user private profile collection"
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Root projects collection storing user-authored and community logos"
+    }
+  }
+}

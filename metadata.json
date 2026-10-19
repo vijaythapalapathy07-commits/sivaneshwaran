@@ -1,0 +1,6 @@
+{
+  "name": "LogoGen AI",
+  "description": "Studio-grade logo and brand generator powered by generative AI with vector precision, styles, and cloud library.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
